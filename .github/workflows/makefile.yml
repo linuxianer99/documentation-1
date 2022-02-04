@@ -1,0 +1,25 @@
+name: Makefile CI
+
+on:
+  workflow_dispatch:
+  #push:
+  #  branches: [ master ]
+  #pull_request:
+  #  branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout source
+    - uses: actions/checkout@v2
+    
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y texlive-latex-extra texlive-generic-extra
+        
+    - name: Build pdf files
+      run: make pdf
